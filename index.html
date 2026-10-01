@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071a33">
+  <meta name="description" content="SMK PINTAR - SMK 17 Muncar | Game Pengenalan Coding RPL">
+  <title>SMK PINTAR - SMK 17 MUNCAR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <main class="app-shell">
+    <section id="authView" class="view">
+      <div class="brand-card">
+        <div class="brand-badge">💻 RPL</div>
+        <h1>SMK PINTAR</h1>
+        <h2>SMK 17 MUNCAR</h2>
+        <p>Game Interaktif Pengenalan Coding Dasar sampai Mahir</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="tab-btn active" data-tab="login">Login</button>
+        <button class="tab-btn" data-tab="register">Daftar</button>
+      </div>
+
+      <form id="loginForm" class="panel auth-panel">
+        <h3>Masuk ke Game</h3>
+        <label>Username<input id="loginUsername" autocomplete="username" required></label>
+        <label>Password<input id="loginPassword" type="password" autocomplete="current-password" required></label>
+        <button class="primary-btn" type="submit">🚀 Mulai Bermain</button>
+        <p class="small-note">Belum punya akun? Pilih tab <b>Daftar</b>.</p>
+      </form>
+
+      <form id="registerForm" class="panel auth-panel hidden">
+        <h3>Buat Akun Pemain</h3>
+        <label>Nama Lengkap<input id="regName" maxlength="80" required></label>
+        <label>Username<input id="regUsername" minlength="3" maxlength="30" required></label>
+        <label>Password<input id="regPassword" type="password" minlength="6" required></label>
+        <label>Konfirmasi Password<input id="regPassword2" type="password" minlength="6" required></label>
+        <label>Kelas / Rombel (opsional)<input id="regClass" maxlength="40"></label>
+        <button class="primary-btn" type="submit">✨ Daftar & Login Otomatis</button>
+      </form>
+
+      <div class="info-box">
+        <b>🎮 Cara bermain</b>
+        <p>Gunakan sentuhan di HP Android. Selesaikan misi setiap level untuk membuka level berikutnya dan mendapatkan nilai.</p>
+      </div>
+    </section>
+
+    <section id="gameView" class="view hidden">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">SMK PINTAR • SMK 17 MUNCAR</div>
+          <h2 id="welcomeName">Halo!</h2>
+        </div>
+        <button id="logoutBtn" class="icon-btn" title="Keluar">↪</button>
+      </header>
+
+      <div class="stats-grid">
+        <div class="stat"><span>Level</span><b id="levelStat">1/31</b></div>
+        <div class="stat"><span>Skor</span><b id="scoreStat">0</b></div>
+        <div class="stat"><span>Progres</span><b id="progressStat">0%</b></div>
+      </div>
+
+      <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+
+      <div id="levelMap" class="level-map"></div>
+
+      <div id="missionPanel" class="panel mission-panel hidden">
+        <div class="mission-head">
+          <span id="missionCategory" class="pill">Pengenalan</span>
+          <span id="missionCounter">Misi 1/3</span>
+        </div>
+        <h2 id="levelTitle">Level</h2>
+        <p id="levelDescription" class="muted"></p>
+        <div id="questionArea"></div>
+        <div class="mission-actions">
+          <button id="submitAnswerBtn" class="primary-btn">Periksa Jawaban</button>
+        </div>
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+
+      <div id="levelIntro" class="panel level-intro">
+        <div class="hero-icon">🧩</div>
+        <h2>Pilih level yang terbuka</h2>
+        <p>Setiap level memiliki 3 misi. Nilai akan dihitung otomatis dan progres tersimpan di perangkat ini.</p>
+        <button id="continueBtn" class="primary-btn">▶ Lanjutkan Level Berikutnya</button>
+      </div>
+
+      <div class="panel tips">
+        <h3>💡 Tips</h3>
+        <ul>
+          <li>Baca soal sampai selesai sebelum memilih jawaban.</li>
+          <li>Level 11–30 mulai mengajak kamu berpikir seperti developer.</li>
+          <li>Level 31 adalah refleksi pribadi — jawab dengan jujur.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="adminView" class="view hidden">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">ADMIN DASHBOARD</div>
+          <h2>Monitoring SMK PINTAR</h2>
+        </div>
+        <button id="adminLogoutBtn" class="icon-btn">↪</button>
+      </header>
+      <div class="panel">
+        <h3>🔐 Dashboard Pengelola</h3>
+        <p class="muted">Data yang tampil di sini berasal dari Google Sheets jika URL API sudah dikonfigurasi. Data lokal perangkat ini juga dapat diekspor.</p>
+        <div class="admin-actions">
+          <button id="refreshAdminBtn" class="primary-btn">🔄 Ambil Data Google Sheets</button>
+          <button id="exportLocalBtn" class="secondary-btn">⬇️ Export Data Lokal CSV</button>
+        </div>
+        <div id="adminStatus" class="small-note"></div>
+      </div>
+      <div class="panel table-wrap">
+        <table>
+          <thead><tr><th>Nama</th><th>Username</th><th>Level</th><th>Skor</th><th>Waktu</th></tr></thead>
+          <tbody id="adminTableBody"><tr><td colspan="5">Belum ada data.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
